@@ -1,8 +1,10 @@
 package router
 
 import (
-	"api"
-	"api/middlewares"
+	"fmt"
+
+	"github.com/mel-rob/echo-overview/api"
+	"github.com/mel-rob/echo-overview/api/middlewares"
 
 	"github.com/labstack/echo"
 )
@@ -23,5 +25,6 @@ func New() *echo.Echo {
 
 	//set groupRoutes
 	api.AdminGroup(adminGroup)
+	fmt.Println(e.Routes())
 	return e
 }

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/labstack/echo"
+	"github.com/mel-rob/echo-overview/router"
 )
 
 //main function
 func main() {
 	// create a new echo instance
-	e := echo.New()
+	e := router.New()
 	e.Logger.Fatal(e.Start(":8000"))
 }

@@ -6,10 +6,11 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/mel-rob/echo-overview/vo"
+
 	"github.com/labstack/echo"
 )
 
-//http://localhost:8000/gophers/json?name=arnold&type=fluffy
 func GetGophers(c echo.Context) error {
 	gopherName := c.QueryParam("name")
 	gopherType := c.QueryParam("type")
@@ -17,7 +18,7 @@ func GetGophers(c echo.Context) error {
 	if dataType == "string" {
 		return c.String(http.StatusOK, fmt.Sprintf("your gopher name is : %s\nand gopher type is : %s\n", gopherName, gopherType))
 	} else if dataType == "json" {
-		gopher := vo.gopher{
+		gopher := vo.Gopher{
 			Name: gopherName,
 			Type: gopherType,
 		}
@@ -31,7 +32,7 @@ func GetGophers(c echo.Context) error {
 }
 
 func AddGopher(c echo.Context) error {
-	gopher := vo.gopher{}
+	gopher := vo.Gopher{}
 	defer c.Request().Body.Close()
 
 	err := json.NewDecoder(c.Request().Body).Decode(&gopher)
